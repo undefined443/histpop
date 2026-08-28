@@ -36,14 +36,14 @@ sudo apt install moreutils colordiff  # GNU head is already the system default
 ### Manual
 
 ```zsh
-git clone https://github.com/<your-username>/histpop.git ~/.zsh/plugins/histpop
+git clone https://github.com/undefined443/histpop.git ~/.zsh/plugins/histpop
 echo "source ~/.zsh/plugins/histpop/histpop.plugin.zsh" >> ~/.zshrc
 ```
 
 ### oh-my-zsh
 
 ```zsh
-git clone https://github.com/<your-username>/histpop.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/histpop
+git clone https://github.com/undefined443/histpop.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/histpop
 ```
 
 Add `histpop` to the `plugins=(...)` array in `~/.zshrc`.
@@ -51,13 +51,13 @@ Add `histpop` to the `plugins=(...)` array in `~/.zshrc`.
 ### zinit
 
 ```zsh
-zinit light <your-username>/histpop
+zinit light undefined443/histpop
 ```
 
 ### antidote
 
 ```zsh
-antidote bundle <your-username>/histpop
+antidote bundle undefined443/histpop
 ```
 
 ## Usage
