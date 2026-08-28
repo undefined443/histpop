@@ -2,9 +2,7 @@
 
 A zsh function that removes the last record from `~/.zsh_history`.
 
-Useful right after running a command you don't want kept in your shell
-history (e.g. one containing a typo'd password or a temporary secret).
-Running `histpop` itself is also removed from history, so it leaves no trace.
+Useful right after running a command you don't want kept in your shell history (e.g. one containing a typo'd password or a temporary secret). Running `histpop` itself is also removed from history, so it leaves no trace.
 
 ## Features
 
