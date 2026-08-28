@@ -13,9 +13,9 @@ Useful right after running a command you don't want kept in your shell history (
 
 ## Dependencies
 
-`histpop` relies on GNU coreutils and moreutils:
+`histpop` needs a GNU `head` (for negative line counts) and `sponge` from moreutils:
 
-- `ghead` (GNU `head`, for negative line counts) — from `coreutils`
+- GNU `head` — the default `head` on Linux; on macOS, install via `coreutils` (exposed as `ghead`, which `histpop` detects automatically, falling back to `head` otherwise)
 - `sponge` — from `moreutils`
 - `colordiff` (optional, for the diff preview) — from `colordiff`
 
@@ -25,8 +25,11 @@ On macOS:
 brew install coreutils moreutils colordiff
 ```
 
-On Linux, GNU `head` is usually the default `head`; adjust the `ghead` calls
-in `histpop.plugin.zsh` to `head` if you don't have GNU coreutils prefixed.
+On Linux:
+
+```zsh
+sudo apt install moreutils colordiff  # GNU head is already the system default
+```
 
 ## Installation
 

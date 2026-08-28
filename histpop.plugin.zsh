@@ -1,5 +1,8 @@
 function histpop() {
 	# Delete the last zsh history record
+	local head_cmd=head
+	command -v ghead >/dev/null && head_cmd=ghead
+
 	local old_history new_history
 	old_history=$(mktemp)
 	new_history=$(mktemp)
@@ -16,11 +19,11 @@ function histpop() {
 	local remove_lines=1
 	[[ "$last_command" =~ 'histpop' ]] && remove_lines=2
 
-	ghead -n -"$remove_lines" "$new_history" | sponge "$new_history"
+	"$head_cmd" -n -"$remove_lines" "$new_history" | sponge "$new_history"
 
 	# Handle multi-line commands that end with two backslash
 	while [[ "$(tail -n 1 "$new_history")" =~ .*\\\\$ ]]; do
-		ghead -n -1 "$new_history" | sponge "$new_history"
+		"$head_cmd" -n -1 "$new_history" | sponge "$new_history"
 	done
 
 	# Finally, move the new history in place
