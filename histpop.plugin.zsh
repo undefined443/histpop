@@ -32,7 +32,7 @@ function histpop() {
 
 	# Optionally, show differences (requires colordiff, might be omitted or ensured it's installed)
 	if command -v colordiff >/dev/null; then
-		colordiff -u "$old_history" ~/.zsh_history | grep -Ev '^.*(---|\+\+\+|@@)'
+		colordiff -u "$old_history" ~/.zsh_history | grep -aEv '^.*(---|\+\+\+|@@)'
 	else
 		echo "colordiff is not installed, skipping diff display."
 	fi
