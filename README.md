@@ -8,15 +8,12 @@ Useful right after running a command you don't want kept in your shell history (
 
 - Removes the last history entry, including its own invocation
 - Correctly handles multi-line commands (continuation lines ending in `\`)
-- Keeps the history file permissions at `600`
 - Shows a diff of what was removed (colorized if `colordiff` is installed)
 
 ## Dependencies
 
-`histpop` needs a GNU `head` (for negative line counts):
-
-- GNU `head` — the default `head` on Linux; on macOS, install via `coreutils` (exposed as `ghead`, which `histpop` detects automatically, falling back to `head` otherwise)
-- `colordiff` (optional, for a colorized diff preview) — from `colordiff`
+- GNU `head` — the default on Linux; on macOS, install `coreutils` (`ghead` is detected automatically)
+- `colordiff` (optional) — colorizes the diff preview
 
 On macOS:
 
