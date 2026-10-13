@@ -3,6 +3,12 @@ function histpop() {
 	local head_cmd=head
 	command -v ghead >/dev/null && head_cmd=ghead
 
+	# Abort early: BSD head fails on negative counts and would empty the history
+	"$head_cmd" --version 2>/dev/null | grep -q GNU || {
+		echo "histpop: GNU head is required (brew install coreutils)." >&2
+		return 1
+	}
+
 	local old_history new_history
 	old_history=$(mktemp)
 	new_history=$(mktemp)
