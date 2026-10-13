@@ -59,8 +59,8 @@ antidote bundle undefined443/histpop
 ## Usage
 
 ```zsh
-$ some-command-with-a-typo'd-secret
-$ histpop
+some-command-with-a-typo'd-secret
+histpop  # remove the line above from history
 ```
 
 ## License
