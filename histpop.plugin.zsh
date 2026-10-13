@@ -13,7 +13,7 @@ function histpop() {
 	local old_history new_history
 	old_history=$(mktemp)
 	new_history=$(mktemp)
-	cp ~/.zsh_history "$old_history"
+	cp "$HISTFILE" "$old_history"
 
 	# Remove the last entry, plus the histpop invocation itself if present
 	local remove_lines=1
@@ -27,12 +27,12 @@ function histpop() {
 	"$head_cmd" -n -"$remove_lines" "$old_history" > "$new_history"
 
 	# Finally, move the new history in place
-	mv "$new_history" ~/.zsh_history
-	chmod 600 ~/.zsh_history
+	mv "$new_history" "$HISTFILE"
+	chmod 600 "$HISTFILE"
 
 	# Show what was removed when colordiff is available
 	if command -v colordiff >/dev/null; then
-		colordiff -u "$old_history" ~/.zsh_history | grep -aEv '^.*(---|\+\+\+|@@)'
+		colordiff -u "$old_history" "$HISTFILE" | grep -aEv '^.*(---|\+\+\+|@@)'
 	else
 		echo "colordiff is not installed, skipping diff display."
 	fi
