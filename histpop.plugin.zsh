@@ -30,12 +30,10 @@ function histpop() {
 	# Finally, move the new history in place
 	mv "$new_history" "$HISTFILE"
 
-	# Show what was removed when colordiff is available
-	if command -v colordiff >/dev/null; then
-		colordiff -u "$old_history" "$HISTFILE" | grep -aEv '^.*(---|\+\+\+|@@)'
-	else
-		echo "colordiff is not installed, skipping diff display."
-	fi
+	# Show what was removed, colorized when colordiff is available
+	local diff_cmd=diff
+	command -v colordiff >/dev/null && diff_cmd=colordiff
+	"$diff_cmd" -u "$old_history" "$HISTFILE" | grep -aEv '^.*(---|\+\+\+|@@)'
 
 	# Clean up
 	rm "$old_history"
