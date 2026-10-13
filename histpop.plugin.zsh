@@ -9,10 +9,11 @@ function histpop() {
 		return 1
 	}
 
-	# Keep an untouched copy of the history for the diff and as the source
+	# Keep an untouched copy of the history for the diff and as the source;
+	# create the new file beside HISTFILE so the final mv is an atomic rename
 	local old_history new_history
 	old_history=$(mktemp)
-	new_history=$(mktemp)
+	new_history=$(mktemp "$HISTFILE.XXXXXX")
 	cp "$HISTFILE" "$old_history"
 
 	# Remove the last entry, plus the histpop invocation itself if present
