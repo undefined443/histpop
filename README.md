@@ -8,7 +8,7 @@ Useful right after running a command you don't want kept in your shell history (
 
 - Removes the last history entry, including its own invocation
 - Correctly handles multi-line commands (continuation lines ending in `\`)
-- Preserves the history file permissions (`600`)
+- Keeps the history file permissions at `600`
 - Shows a diff of what was removed, if `colordiff` is installed
 
 ## Dependencies

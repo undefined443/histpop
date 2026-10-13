@@ -29,7 +29,6 @@ function histpop() {
 
 	# Finally, move the new history in place
 	mv "$new_history" "$HISTFILE"
-	chmod 600 "$HISTFILE"
 
 	# Show what was removed when colordiff is available
 	if command -v colordiff >/dev/null; then
