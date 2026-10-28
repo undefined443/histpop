@@ -3,9 +3,14 @@ function histpop() {
 	local head_cmd=head
 	command -v ghead >/dev/null && head_cmd=ghead
 
-	# Abort early: BSD head fails on negative counts and would empty the history
-	"$head_cmd" --version 2>/dev/null | grep -q GNU || {
-		echo "histpop: GNU head is required (brew install coreutils)." >&2
+	# Verify the negative line-count behavior used below; BSD head rejects it.
+	local head_probe
+	head_probe=$(printf 'one\ntwo\nthree\n' | "$head_cmd" -n -1 2>/dev/null) || {
+		echo "histpop: head with negative line-count support is required." >&2
+		return 1
+	}
+	[[ "$head_probe" == $'one\ntwo' ]] || {
+		echo "histpop: head with negative line-count support is required." >&2
 		return 1
 	}
 
