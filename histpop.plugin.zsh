@@ -38,7 +38,11 @@ function histpop() {
 	# Show what was removed, colorized when colordiff is available
 	local diff_cmd=diff
 	command -v colordiff >/dev/null && diff_cmd=colordiff
-	"$diff_cmd" -u "$old_history" "$HISTFILE" | grep -aEv '^.*(---|\+\+\+|@@)'
+	# zsh metafies bytes 0x83-0xA2 in HISTFILE as 0x83 followed by (byte ^ 0x20),
+	# so undo that to let the terminal decode the preview as plain UTF-8
+	"$diff_cmd" -u "$old_history" "$HISTFILE" |
+		grep -aEv '^.*(---|\+\+\+|@@)' |
+		perl -pe 's/\x83([\x80-\xbf])/chr(ord($1) ^ 0x20)/ge'
 
 	# Clean up
 	rm "$old_history"
