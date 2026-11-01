@@ -13,6 +13,7 @@ Useful right after running a command you don't want kept in your shell history (
 ## Dependencies
 
 - GNU `head` — the default on Linux; on macOS, install `coreutils` (`ghead` is detected automatically)
+- `perl` — preinstalled on macOS and Linux; used to decode non-ASCII characters in the diff preview
 - `colordiff` (optional) — colorizes the diff preview
 
 On macOS:
